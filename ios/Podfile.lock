@@ -1,0 +1,62 @@
+PODS:
+  - ad_klein_flutter_sdk (0.0.1):
+    - AdKleinSDK
+    - Flutter
+  - AdKleinSDK (3.2.0):
+    - AdKleinSDK/core (= 3.2.0)
+  - AdKleinSDK/AdKleinSDKFoundation (3.2.0)
+  - AdKleinSDK/AdKleinSDKPlatforms/CSJ (3.2.0):
+    - AdKleinSDK/core
+    - Ads-CN (~> 3.8.1.0)
+  - AdKleinSDK/AdKleinSDKPlatforms/GDT (3.2.0):
+    - AdKleinSDK/core
+    - GDTMobSDK (~> 4.13.01)
+  - AdKleinSDK/AdKleinSDKPlatforms/Mobius (3.2.0):
+    - AdKleinSDK/AdMobiusSDK
+    - AdKleinSDK/core
+  - AdKleinSDK/AdMobiusSDK (3.2.0)
+  - AdKleinSDK/core (3.2.0):
+    - AdKleinSDK/AdKleinSDKFoundation
+    - AdKleinSDK/NxPerfSDK
+  - AdKleinSDK/NxPerfSDK (3.2.0)
+  - Ads-CN (3.8.1.0):
+    - Ads-CN/BUAdSDK (= 3.8.1.0)
+  - Ads-CN/BUAdSDK (3.8.1.0):
+    - Ads-CN/BUFoundation
+    - Ads-CN/Domestic
+  - Ads-CN/BUFoundation (3.8.1.0)
+  - Ads-CN/Domestic (3.8.1.0)
+  - Flutter (1.0.0)
+  - GDTMobSDK (4.13.02):
+    - GDTMobSDK/GDTMobSDK (= 4.13.02)
+  - GDTMobSDK/GDTMobSDK (4.13.02)
+
+DEPENDENCIES:
+  - ad_klein_flutter_sdk (from `.symlinks/plugins/ad_klein_flutter_sdk/ios`)
+  - AdKleinSDK/AdKleinSDKPlatforms/CSJ
+  - AdKleinSDK/AdKleinSDKPlatforms/GDT
+  - AdKleinSDK/AdKleinSDKPlatforms/Mobius
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - AdKleinSDK
+    - Ads-CN
+    - GDTMobSDK
+
+EXTERNAL SOURCES:
+  ad_klein_flutter_sdk:
+    :path: ".symlinks/plugins/ad_klein_flutter_sdk/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  ad_klein_flutter_sdk: d2aba83ff6ecb09f3cfae4a7d319ce4a06e1ab71
+  AdKleinSDK: fefde3bb69cbe4b1a916f652553abe7f63073e54
+  Ads-CN: 49af96ac9f7b1a43ef4cfb37b6a74863421d4ee1
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  GDTMobSDK: c614fccaf8267a6fd6eeecb0501d7cd804326003
+
+PODFILE CHECKSUM: 8fb9f99cfe98b10956c6f95aaf9d253ae02c819f
+
+COCOAPODS: 1.10.2

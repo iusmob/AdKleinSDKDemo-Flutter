@@ -1,0 +1,80 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.example.ad_klein_demo_flutter"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    // support支持库，如果是AndroidX请使用对应的支持库
+    implementation 'com.android.support:appcompat-v7:30.0.0'
+    implementation 'com.android.support:support-v4:30.0.0'
+    implementation(name: 'msa_mdid_1.0.23', ext: 'aar')
+
+    // adKleinSdk(必须)
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    implementation 'com.iusmob.adklein.ad:core:3.1.1'
+
+    // 莫比乌斯，推荐接入(需要gson和okhttp支持)
+    implementation 'com.iusmob.adklein.ad:mobius:2.1.3'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+//    // 头条，推荐接入
+    implementation 'com.iusmob.adklein.ad.adapter:toutiao:2.1.1'
+
+//    // 广点通，推荐接入
+    implementation 'com.iusmob.adklein.ad.adapter:gdt:2.1.1'
+}
+
+flutter {
+    source '../..'
+}
