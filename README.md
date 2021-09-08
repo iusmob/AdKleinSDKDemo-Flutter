@@ -29,7 +29,6 @@ pod 'AdKleinSDK/AdKleinSDKPlatforms/Mobius'     # 莫比乌斯(推荐)
 #pod 'AdKleinSDK/AdKleinSDKPlatforms/Smaato'    # Smaato(可选)
 ```
 注意： 接入Google的Admob广告请务必参考5.1.1在Info.plist中添加GADApplicationIdentifier信息。
-ios在podinstall出现异常，删除掉podfile的use_frameworks!
 
 ### 2.1.2 Android在项目中增加如下内容，可以根据实际需要选择性导入平台
 
@@ -75,32 +74,32 @@ dependencies {
     // adKleinSdk(必须)
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.iusmob.adklein.ad:core:3.1.1'
-
+    
     // 莫比乌斯，推荐接入(需要gson和okhttp支持)
     implementation 'com.iusmob.adklein.ad:mobius:2.1.3'
     implementation 'com.google.code.gson:gson:2.8.5'
-
+    
     // 头条，推荐接入
     implementation 'com.iusmob.adklein.ad.adapter:toutiao:2.1.1'
-
+    
     // 广点通，推荐接入
     implementation 'com.iusmob.adklein.ad.adapter:gdt:2.1.1'
-
+    
     // 快手AdapterSDK，可选的
     implementation 'com.iusmob.adklein.ad.adapter:ks:2.1.1'
-
+    
     // 百度AdapterSDK，可选的
     implementation 'com.iusmob.adklein.ad.adapter:baidu:2.1.1'
-
+    
     // AdMobAdapterSdk，可选的（海外市场）
     implementation 'com.iusmob.adklein.ad.adapter:am:2.1.1'
-
+    
     // SmMobAdapterSdk，可选的（海外市场）
     implementation 'com.iusmob.adklein.ad.adapter:sm:2.1.1'
-
+    
     //华为AdapterSDK，可选的
     implementation 'com.iusmob.adklein.ad.adapter:hwpps:2.1.1'
-
+    
     //米盟AdapterSDK，可选的（还需要gson和glide支持）
     implementation 'com.iusmob.adklein.ad.adapter:mimo:2.1.1'
 }
@@ -118,14 +117,8 @@ dependencies {
 <true/>
 </dict>
 ```
-#### 3.1.1.2. Info.plist 添加定位权限字段（使用ADMobGenLocation可不设置）
 
-```
-NSLocationWhenInUseUsageDescription
-NSLocationAlwaysAndWhenInUseUsageDeion
-```
-
-#### 3.1.1.3. Info.plist推荐设置白名单，可提高广告收益
+#### 3.1.1.2. Info.plist推荐设置白名单，可提高广告收益
 
 ```
 <key>LSApplicationQueriesSchemes</key>
@@ -209,7 +202,6 @@ NSLocationAlwaysAndWhenInUseUsageDeion
   <string>wxwork</string> <!-- 企业微信  -->
   <string>dingtalk</string> <!-- 钉钉 -->
 
-
   <!-- 生活 -->
   <string>imeituan</string> <!-- 美团  -->
   <string>dianping</string> <!-- 点评  -->
@@ -233,8 +225,6 @@ NSLocationAlwaysAndWhenInUseUsageDeion
   <string>diditaxi</string> <!-- 滴滴  -->
   <string>taobaotravel</string> <!-- 飞猪  -->
   <string>travelguide</string> <!-- 马蜂窝  -->
-
-
 
   <!-- 游戏 -->
   <string>tencent1104466820</string> <!-- 王者荣耀  -->
@@ -301,7 +291,7 @@ NSLocationAlwaysAndWhenInUseUsageDeion
 </paths>
 ```
 
-#### 3.1.2.3 网络配置
+#### 3.1.2.3 网络配置 
 需要在 AndroidManifest.xml 添加依赖声明uses-library android:name="org.apache.http.legacy" android:required="false"， 且 application标签中添加 android:usesCleartextTraffic="true"，适配网络http请求，否则 SDK可能无法正常工作，接入代码示例如下：
 ```java
 <application
@@ -344,6 +334,7 @@ NSLocationAlwaysAndWhenInUseUsageDeion
 
 1. 向用户申请权限。
 
+objc
 ```
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
@@ -355,6 +346,16 @@ NSLocationAlwaysAndWhenInUseUsageDeion
 }
 ```
 
+swift
+```
+import AppTrackingTransparency
+
+if #available(iOS 14.5, *) {
+        ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+        })
+    } else {
+    }
+```
 ### 3.2.2 SKAdNetwork
 
 SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
@@ -864,3 +865,10 @@ class _RewardState extends State<RewardPage> {
 }
 
 ```
+
+## 更新日志
+
+| 版本号  |    日期    | 更新日志                                                     |
+| ------- | :--------: | ------------------------------------------------------------ |
+| v0.0.2  | 2021-09-8 | 解决ios重复导入导致的冲突         |
+| v0.0.1  | 2021-09-6 | 0.0.1正式发布。         |

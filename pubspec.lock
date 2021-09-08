@@ -7,7 +7,7 @@ packages:
       name: ad_klein_flutter_sdk
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1"
+    version: "0.0.2"
   async:
     dependency: transitive
     description:
