@@ -7,7 +7,14 @@ packages:
       name: ad_klein_flutter_sdk
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.2"
+    version: "0.0.3"
+  app_tracking_transparency:
+    dependency: "direct main"
+    description:
+      name: app_tracking_transparency
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.1"
   async:
     dependency: transitive
     description:
@@ -158,4 +165,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
+  flutter: ">=2.0.0"

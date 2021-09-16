@@ -2,6 +2,13 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            credentials {
+                username '612da771fa25fa3e244cf7d8'
+                password '488L5cNZL50n'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2133520-release-i5MW1M/'
+        }
     }
 
     dependencies {

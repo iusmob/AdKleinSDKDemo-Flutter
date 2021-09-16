@@ -1,6 +1,7 @@
 import 'package:ad_klein_demo_flutter/reward.dart';
 import 'package:ad_klein_demo_flutter/splash.dart';
 import 'package:ad_klein_flutter_sdk/ad_klein_flutter_sdk.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants.dart';
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
+    getIDFA();
     AdKleinFlutterSdk.initSdk(appid: Constants.appKey());
   }
 
@@ -34,6 +35,12 @@ class _MyAppState extends State<MyApp> {
     "Reward(激励视频广告)",
     "fullscreenVod(全屏视频广告)"
   ];
+
+  //申请idfa
+  void getIDFA() async {
+    final status = await AppTrackingTransparency.requestTrackingAuthorization();
+    print("status = $status");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +63,7 @@ class _MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   ),
                   child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onTap: () {
                       var widget;
                       switch (index) {
