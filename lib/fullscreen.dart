@@ -13,20 +13,29 @@ class FullScreenState extends State<FullScreenPage> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
+    var width = queryData.size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("FullScreenVodAd"),
+        title: Text("全屏视频广告"),
       ),
       body: Center(
-        child: Column(
-          children: [
-            TextButton(
-              onPressed: () {
-                showFullScreenVodAd();
-              },
-              child: Text("加载广告"),
+        child: Container(
+          width: width * 0.8,
+          margin: EdgeInsets.symmetric(vertical: 8),
+          decoration: new BoxDecoration(
+            border: new Border.all(
+              width: 1,
+              color: Colors.blue,
             ),
-          ],
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
+          child: TextButton(
+            onPressed: () {
+              showFullScreenVodAd();
+            },
+            child: Text("加载广告"),
+          ),
         ),
       ),
     );

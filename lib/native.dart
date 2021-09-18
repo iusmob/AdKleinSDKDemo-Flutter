@@ -12,7 +12,7 @@ class NativePage extends StatefulWidget {
 class NativeState extends State<NativePage> {
   var _nativeAd;
 
-  List<dynamic> _items = List.generate(10, (i) => i);
+  List<dynamic> _items = List.generate(5, (i) => i);
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -73,7 +73,9 @@ class NativeState extends State<NativePage> {
                 return Container(
                     width: 300,
                     height: 150,
-                    child: Text("Cell", style: TextStyle(fontSize: 75)));
+                    child: Center(
+                        child: Text("Normal Data",
+                            style: TextStyle(fontSize: 45))));
               }
             }),
       ),

@@ -29,8 +29,8 @@ class _MyAppState extends State<MyApp> {
 
   static const listData = [
     "SplashAd(开屏广告)",
-    "Banner(横幅广告)",
     "Native(信息流广告)",
+    "Banner(横幅广告)",
     "Inter(插屏广告)",
     "Reward(激励视频广告)",
     "fullscreenVod(全屏视频广告)"
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('ADKleinSDK 广告demo'),
+            title: const Text('ADKlein广告Demo_Flutter'),
           ),
           body: ListView.builder(
             itemCount: listData.length,
@@ -71,10 +71,10 @@ class _MyAppState extends State<MyApp> {
                           widget = SplashPage();
                           break;
                         case 1:
-                          widget = BannerPage();
+                          widget = NativePage();
                           break;
                         case 2:
-                          widget = NativePage();
+                          widget = BannerPage();
                           break;
                         case 3:
                           widget = InterPage();

@@ -54,6 +54,7 @@ class _SplashState extends State<SplashPage> {
   void releaseSplashAd() {
     _splashAd?.release();
     _splashAd = null;
+    Navigator.pop(context);
   }
 
   @override
