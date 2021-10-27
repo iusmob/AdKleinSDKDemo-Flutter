@@ -15,10 +15,14 @@ class _SplashState extends State<SplashPage> {
   Widget build(BuildContext context) {
     showSplashAd();
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Splash"),
+      body: Container(
+        width: MediaQuery.of(context).size.width, // 屏幕宽度
+        height: MediaQuery.of(context).size.height, // 屏幕高度
+        child: Image.asset(
+          "images/opening.png",
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Center(),
     );
   }
 

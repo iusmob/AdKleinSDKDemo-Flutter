@@ -1,17 +1,13 @@
-import 'package:ad_klein_demo_flutter/reward.dart';
-import 'package:ad_klein_demo_flutter/splash.dart';
+import 'package:ad_klein_demo_flutter/home.dart';
+import 'package:ad_klein_flutter_sdk/ad_klein_ad.dart';
 import 'package:ad_klein_flutter_sdk/ad_klein_flutter_sdk.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants.dart';
-import 'banner.dart';
-import 'fullscreen.dart';
-import 'inter.dart';
-import 'native.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(title: 'ADKlein广告Demo_Flutter', home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -27,14 +23,7 @@ class _MyAppState extends State<MyApp> {
     AdKleinFlutterSdk.initSdk(appid: Constants.appKey());
   }
 
-  static const listData = [
-    "SplashAd(开屏广告)",
-    "Native(信息流广告)",
-    "Banner(横幅广告)",
-    "Inter(插屏广告)",
-    "Reward(激励视频广告)",
-    "fullscreenVod(全屏视频广告)"
-  ];
+  var _splashAd;
 
   //申请idfa
   void getIDFA() async {
@@ -44,64 +33,57 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('ADKlein广告Demo_Flutter'),
-          ),
-          body: ListView.builder(
-            itemCount: listData.length,
-            padding: const EdgeInsets.all(15),
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  decoration: new BoxDecoration(
-                    border: new Border.all(
-                      width: 1,
-                      color: Colors.blue,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  ),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {
-                      var widget;
-                      switch (index) {
-                        case 0:
-                          widget = SplashPage();
-                          break;
-                        case 1:
-                          widget = NativePage();
-                          break;
-                        case 2:
-                          widget = BannerPage();
-                          break;
-                        case 3:
-                          widget = InterPage();
-                          break;
-                        case 4:
-                          widget = RewardPage();
-                          break;
-                        case 5:
-                          widget = FullScreenPage();
-                          break;
-                      }
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return widget;
-                      }));
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 10),
-                        Text(listData[index], textAlign: TextAlign.center),
-                        const SizedBox(height: 10),
-                      ],
-                    ),
-                  ));
-            },
-          )),
+    showSplashAd();
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width, // 屏幕宽度
+        height: MediaQuery.of(context).size.height, // 屏幕高度
+        child: Image.asset(
+          "images/opening.png",
+          fit: BoxFit.cover,
+        ),
+      ),
     );
+  }
+
+  // 开屏
+  // 显示开屏广告请保证当时app内没有其他地方显示开屏广告，否则会有冲突
+  void showSplashAd() {
+    if (_splashAd != null) {
+      return;
+    }
+    _splashAd = ADKleinSplashAd(Constants.splashPosid(), "splash_placeholder");
+    _splashAd.onClosed = () {
+      print("开屏广告关闭了");
+      // 在加载失败和关闭回调后关闭广告
+      releaseSplashAd();
+    };
+    _splashAd.onFailed = () {
+      print("开屏广告失败了");
+      // 在加载失败和关闭回调后关闭广告
+      releaseSplashAd();
+    };
+    _splashAd.onExposed = () {
+      print("开屏广告曝光了");
+    };
+    _splashAd.onSucced = () {
+      print("开屏广告成功了");
+    };
+    _splashAd.onClicked = () {
+      print("开屏广告点击了");
+    };
+    _splashAd.loadAndShow();
+  }
+
+  void releaseSplashAd() {
+    _splashAd?.release();
+    _splashAd = null;
+    Navigator.pop(context);
+    next();
+  }
+
+  void next() {
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => new HomePage()));
   }
 }
