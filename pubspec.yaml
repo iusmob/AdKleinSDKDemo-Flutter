@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ad_klein_flutter_sdk: ^1.0.0
+  ad_klein_flutter_sdk: ^1.1.0
   app_tracking_transparency: ^2.0.1
 
   # The following adds the Cupertino Icons font to your application.
